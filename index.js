@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const formidable = require('express-formidable');
 var app = express();
 
 app.get('/', function(req, res){
@@ -9,19 +10,18 @@ app.get('/', function(req, res){
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-// for parsing application/json
-app.use(bodyParser.json());
+app.use(formidable());
 
-// for parsing application/xwww-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // for parsing multipart/form-data
 app.use(express.static('public'));
 
 app.post('/', function(req, res){
-   console.log(req.body);
-   res.send("recieved your request!");
+   console.log(req.fields);
+   res.header("Content-Disposition", "attachment;filename="+"teste"+".csv");
+    res.type("text/csv");
+    res.status(200).send(req.fields);
+
 });
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
-})
+  console.log('Example app listening on port 3000!');})
