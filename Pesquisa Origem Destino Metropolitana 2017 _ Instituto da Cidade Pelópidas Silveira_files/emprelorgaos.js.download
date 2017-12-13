@@ -1,0 +1,328 @@
+jQuery(function ($) {
+
+
+
+//$.mask.definitions['p']='[0-9]{0,5}$';
+// $("#date").mask("99/99/9999", {placeholder: "mm/dd/yyyy"});
+// $("#phone").mask("(999) 999-9999");
+// $("#tin").mask("99-9999999");
+$("#edit-field-matricula-und-0-value").mask("?99999999999");
+//$("#edit-field-cpf-und-0-value").mask("999.999.999-99");
+$("#edit-field-telefone-und-0-value").mask("?99999999999");
+$("#edit-field-mobil-cep-und-0-value").mask("99.999-999");
+
+/*   Para esconder o texto "Fora do menu" nas Configurações do menu  */
+$(".vertical-tab-button").find("span.summary").css({"display":"none"});
+
+$('.form-item-menu-parent label').append('<span style="color:red;">*</span>');
+
+if ($("body.page-node-add").length){
+
+    //$(".form-item-menu-enabled").find("input.form-checkbox").prop('checked', true);
+    //$(".form-item-menu-enabled").find("input.form-checkbox").attr("disabled", true);
+
+    //$("#edit-menu--2").css({"display":"block"});
+
+
+    $("#edit-menu-parent").attr("required","required");
+
+    $('#edit-menu-parent option[value="menu-menu2:0"]').removeAttr("selected");
+    // $('#edit-menu-parent option[value="menu-menu2:0"]').prop('selected', '');
+
+    /*   Alterar nome de item com valor zero, do combobox  */
+    //$('#edit-menu-parent option[value="menu-menu2:0"]').html('Raiz');
+
+    //$('#edit-menu-parent').prepend('<option value="" selected="selected">Selecione</option>');
+
+}
+
+
+
+// $("#edit-title").bind("click", function(){
+//    alert("Este campo é gerado automaticamente, não é possível editá-lo!");
+// });
+$('#forward-form #edit-email').val("icps@recife.pe.gov.br");
+//$('input[name="name"]').val("REMETENTE DA PESQUISA");
+
+//$("#edit-email").value("icps@recife.pe.gov.br");
+
+$("<input type='text' value='' class='form-text required' maxlength='256' size='58' />")
+.attr("id", "edit-recipients")
+.attr("name", "recipients")
+.appendTo("#forward-form .form-item-recipients");
+
+$('#forward-form textarea[name="recipients"]').remove();
+$('#forward-form .grippie').hide();
+
+$('#forward-form .form-item-name').hide();
+$('#forward-form .form-item-email').hide();
+$('#forward-form .form-item-recipients .description').hide();
+$('#forward-form .form-item-message').hide();
+$('#forward-form #edit-subject').hide();
+$('#forward-form #edit-body').hide();
+$('#forward-form .form-item-name').val("REMETENTE DA PESQUISA");
+$("#forward-form input[name=name]").val('REMETENTE DA PESQUISA');
+
+
+if ($("form#pesquisa-origem-destino-node-form").length){
+
+    //$(document).ready(function() {
+       $('input[name="field_filho_em_escola[und]"]').click(function() {
+           if($(this).attr('id') == 'edit-field-filho-em-escola-und-1') {
+            $('#edit-field-quantos-filhos').show();
+        }
+
+        else {
+            $('#edit-field-quantos-filhos').hide();
+        }
+    });
+    //});
+
+    $('#edit-field-mobil-trabalha-und').change(function(){
+        $('#edit-field-turno-trabalho').hide();
+        $('#edit-field-inicio-trabalho').hide();
+        $('#edit-field-fim-trabalho').hide();
+        $('#edit-field-origem-para-trabalho').hide();
+        $('#edit-field-frequencia-origem-trabalho').hide();
+        $('#edit-field-meio-de-transporte').hide();
+
+        if ($('#edit-field-mobil-trabalha-und').val() == 1) {
+            $('#edit-field-turno-trabalho').show();
+            $('#edit-field-inicio-trabalho').show();
+            $('#edit-field-fim-trabalho').show();
+            $('#edit-field-origem-para-trabalho').show();
+            $('#edit-field-frequencia-origem-trabalho').show();
+            $('#edit-field-meio-de-transporte').show();
+        }
+    });
+
+
+    $('input[name="field_origem_para_trabalho[und]"]').click(function() {
+       if($(this).attr('id') == 'edit-field-origem-para-trabalho-und-5') {
+        $('#edit-field-origem-trabalho-outro').show();
+    }
+
+    else {
+        $('#edit-field-origem-trabalho-outro').hide();
+    }
+});
+
+    $('#edit-field-voce-estuda-und').change(function(){
+        $('#edit-field-turno-aulas').hide();
+        $('#edit-field-nivel-formacao').hide();
+        $('#edit-field-nome-da-instituicao-ensino').hide();
+        $('#edit-field-inicio-aula').hide();
+        $('#edit-field-fim-aulas').hide();
+        $('#edit-field-origem-para-estudo').hide();
+        $('#edit-field-frequencia-origem-estudo').hide();
+        $('#edit-field-transporte-estudo').hide();
+
+        if ($('#edit-field-voce-estuda-und').val() == 1) {
+            $('#edit-field-turno-aulas').show();
+            $('#edit-field-nivel-formacao').show();
+            $('#edit-field-nome-da-instituicao-ensino').show();
+            $('#edit-field-inicio-aula').show();
+            $('#edit-field-fim-aulas').show();
+            $('#edit-field-origem-para-estudo').show();
+            $('#edit-field-frequencia-origem-estudo').show();
+            $('#edit-field-transporte-estudo').show();
+        }
+    });
+
+    $('input[name="field_origem_para_estudo[und]"]').click(function() {
+       if($(this).attr('id') == 'edit-field-origem-para-estudo-und-5') {
+        $('#edit-field-origem-para-aula-outro').show();
+    }
+
+    else {
+        $('#edit-field-origem-para-aula-outro').hide();
+    }
+});
+
+    $('#edit-field-comentarios-und-0-value').keyup(function(){
+        $(this).val($(this).val().replace(/\r?\n/gi, ''));
+    });
+
+}
+
+
+
+/*   --------------------------------------   */
+/*   Início JS pesquisa origem destino 2016   */
+/*   --------------------------------------   */
+
+if ($("form#pesquisa-origem-destino-2016-node-form").length){
+
+    $('.group-horario-de-trabalho').hide();
+    $('.group-que-horas-sai-p-trabalho').hide();
+
+    $('.group-horario-de-estudo').hide();
+    $('.group-que-horas-sai-p-estudo').hide();
+
+
+    //$('#edit-field-od16ql-profissao2').hide();
+    $('.group-od16horario-trab2').hide();
+    
+
+
+    
+
+
+    $('input[name="field_od16_voce_trabalha_[und]"]').click(function() {
+        if($(this).attr('id') == 'edit-field-od16-voce-trabalha-und-1') {
+            $('.group-horario-de-trabalho').show();
+            $('.group-que-horas-sai-p-trabalho').show();
+
+            if($('#edit-field-od16possui-outra-atividade-und-1').is(':checked') ){
+                $('.group-od16horario-trab2').show();                
+            }
+
+        }
+        else {
+            $('.group-horario-de-trabalho').hide();
+            $('.group-que-horas-sai-p-trabalho').hide();
+
+            $('.group-od16horario-trab2').hide();
+        }
+
+        /*
+        if ($(this).attr('id') == 'edit-field-od16-voce-trabalha-und-1' && $('input[name="field_od16possui_outra_atividade[und]"]').attr('id') == 'edit-field-od16possui-outra-atividade-und-1') {
+            $('.group-od16horario-trab2').show();
+        }*/
+    });
+
+
+    if($('#edit-field-od16-voce-trabalha-und-1').is(':checked')) {
+        $('.group-horario-de-trabalho').show();
+        $('.group-que-horas-sai-p-trabalho').show(); 
+    }
+
+    /*
+    if ($("#edit-field-od16-voce-trabalha-und-1").val() === 1{
+        $('.group-horario-de-trabalho').show();
+        $('.group-que-horas-sai-p-trabalho').show();
+    }
+    */
+
+
+    $('input[name="field_od16_voce_estuda_[und]"]').click(function() {
+        if($(this).attr('id') == 'edit-field-od16-voce-estuda-und-1') {
+            $('.group-horario-de-estudo').show();
+            $('.group-que-horas-sai-p-estudo').show();
+
+        }
+        else {
+            $('.group-horario-de-estudo').hide();
+            $('.group-que-horas-sai-p-estudo').hide();
+
+        }
+    });
+
+    if($('#edit-field-od16-voce-estuda-und-1').is(':checked')) {
+        $('.group-horario-de-estudo').show();
+        $('.group-que-horas-sai-p-estudo').show(); 
+    }
+
+
+    $('input[name="field_od16possui_outra_atividade[und]"]').click(function() {
+        if($(this).attr('id') == 'edit-field-od16possui-outra-atividade-und-1' && $('input[name="field_od16_voce_trabalha_[und]"]').attr('id') == 'edit-field-od16-voce-trabalha-und-1' ) {
+           // $('#edit-field-od16ql-profissao2').show();
+           $('.group-od16horario-trab2').show();
+
+           
+       }
+       else {
+           // $('#edit-field-od16ql-profissao2').hide();
+           $('.group-od16horario-trab2').hide();
+           
+           
+           
+       }
+   });
+
+    if($('#edit-field-od16possui-outra-atividade-und-1').is(':checked') && $('#edit-field-od16-voce-trabalha-und-1').is(':checked')) {
+        $('.group-od16horario-trab2').show();
+    }
+
+
+    $('.form-item-field-od16-endereco-und-0-premise').hide();
+    $('.form-item-field-od16-endereco-seu-trabalho-und-0-premise').hide();
+    $('.form-item-field-od16endereco-trabalho2-und-0-premise').hide();
+    
+
+
+
+    $('.form-item-title').hide();
+
+    /*  O placeholder serve para a máscara não colocar underlines no input */
+    $('.addressfield-viacep-postal-code').mask("99999999",{"placeholder": ""});
+
+
+    /*   -------------------------------------------     */
+    /* Para checar se o formulário já foi salvo uma vez  */
+
+    $('.form-field-name-field-od16-campovalidacao').hide();
+
+
+    function criaStringRandomica()
+    {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 5; i++ )
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+        return text;
+    }
+
+    stringRandomica = criaStringRandomica();
+
+    //document.getElementById("edit-field-od16-campovalidacao-und-0-value").value = stringRandomica;
+
+
+    /*   campo busca CEP   */
+    $('.form-item-field-od16-endereco-und-0-postal-code').after('<p><img alt="logo_correios_peq.png" src="../../sites/default/files/logo_correios_peq.png" style="width:100px;height:24px;" /><br />Caso não saiba o CEP, consulte&nbsp;<a href="http://m.correios.com.br/movel/buscaCep.do" class="linkbuscacep" onclick=""><strong>AQUI</strong></a></p>');
+
+
+
+    
+    $('.form-item-field-od16-endereco-seu-trabalho-und-0-postal-code').after('<p><img alt="logo_correios_peq.png" src="../../sites/default/files/logo_correios_peq.png" style="width:100px;height:24px;" /><br />Caso não saiba o CEP, consulte&nbsp;<a href="http://m.correios.com.br/movel/buscaCep.do" class="linkbuscacep" onclick=""><strong>AQUI</strong></a></p>');
+
+    $('.form-item-field-od16endereco-trabalho2-und-0-postal-code').after('<p><img alt="logo_correios_peq.png" src="../../sites/default/files/logo_correios_peq.png" style="width:100px;height:24px;" /><br />Caso não saiba o CEP, consulte&nbsp;<a href="http://m.correios.com.br/movel/buscaCep.do" class="linkbuscacep" onclick=""><strong>AQUI</strong></a></p>');
+
+    $(".linkbuscacep").attr("onclick", "window.open(this.href, 'AcharCEP', 'resizable=no,status=no,location=no,toolbar=no,menubar=no,fullscreen=no,scrollbars=yes,dependent=no,width=500,height=500'); return false;");
+
+
+
+/*
+    if (!$("#edit-submit").length){
+        $("#edit-preview").after('<p>Para Enviar a Pesquisa você deve antes "Pré-visualizar" ao menos uma vez.</p>');
+    }
+    */
+
+
+
+} /*   Fim do if  ("form#pesquisa-origem-destino-2016-node-form").length)    */
+
+
+
+/*
+
+if (window.history && window.history.pushState) {
+
+    window.history.pushState('forward', null, './#forward');
+
+    $(window).on('popstate', function() {
+        window.location.href = "http://grupald.recife/desenvolvimento/icps270916";
+    });
+
+}*/
+
+
+
+
+
+
+
+});
+//jQuery('menu[enabled]').attr('checked','checked');

@@ -2,13 +2,15 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const formidable = require('express-formidable');
 var app = express();
+var path = require('path');
 
 app.get('/', function(req, res){
-   res.render('form');
-});
+   res.sendFile(path.join(__dirname + '/index.html'));
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+});
+app.use("/js", express.static(__dirname + '/js'));
+app.use("/images", express.static(__dirname + '/images'));
+app.use("/styles", express.static(__dirname + '/styles'));
 
 app.use(formidable());
 
