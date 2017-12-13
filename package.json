@@ -1,17 +1,26 @@
 {
-  "name": "ameciclo-od",
-  "version": "0.1",
+  "name": "form_pesquisa_od",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
-    "express-formidable": "^1.0.0"
+    "express-formidable": "^1.0.0",
+    "pug": "^2.0.0-rc.4"
   },
-  "engines": {
-    "node": "^4.1.1"
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
-    "nodemon": "^1.12.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iacapuca/form_pesquisa_od.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iacapuca/form_pesquisa_od/issues"
+  },
+  "homepage": "https://github.com/iacapuca/form_pesquisa_od#readme"
 }
