@@ -1,12 +1,14 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var formidable = require('express-formidable');
-var time = require('express-timestamp')
-var app = express();
-var path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const formidable = require('express-formidable');
+const time = require('express-timestamp')
+const app = express();
+const path = require('path');
+const nodemailer = require('nodemailer');
 
 app.set('port', (process.env.PORT || 3000));
 app.use(time.init);
+
 
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
