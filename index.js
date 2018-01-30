@@ -5,6 +5,8 @@ const time = require('express-timestamp')
 const app = express();
 const path = require('path');
 const nodemailer = require('nodemailer');
+const converter = require('json-2-csv');
+
 
 app.set('port', (process.env.PORT || 3000));
 app.use(time.init);
@@ -26,7 +28,14 @@ app.use(formidable());
 app.use(express.static('public'));
 
 app.post('/', function(req, res) {
-  console.log(Object.values(req.fields));
+  let data = req.fields;
+  var json2csvCallback = function (err, csv) {
+    if (err) throw err;
+    console.log(csv);
+};
+
+converter.json2csv(data, json2csvCallback);
+  console.log(data);
   res.header("Content-Disposition", "attachment;filename=" + req.timestamp.tz("America/Sao_Paulo").format() + ".csv");
   res.type("text/csv");
   res.status(200).send(Object.values(req.fields));
